@@ -2,6 +2,9 @@
   "name": "red_sparrow",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "index.js",
   "scripts": {
     "start": "ts-node --transpile-only ./src/index.ts",
