@@ -1,0 +1,14 @@
+import { NextFunction, Request, Response } from "express";
+import { validationResult, query } from "express-validator";
+
+export const agentsValidator = [
+    query('api-key').exists().matches(process.env.APIKEY).withMessage('Invalid API key')
+  ,
+  (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    errors.array({onlyFirstError: true})
+    if (!errors.isEmpty())
+      return res.status(422).json({ errors: errors.array() });
+    next();
+  },
+];
