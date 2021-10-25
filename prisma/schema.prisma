@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model tblInterviewCold {
+  Interview_CSID      Int       @id(map: "PK_tblInterviewCold") @default(autoincrement())
+  CL_ID               Int?
+  Name                String?   @db.NVarChar(255)
+  Email               String?   @db.NVarChar(255)
+  Cell_Phone          String?   @db.NVarChar(255)
+  Experience          String?   @db.NVarChar(Max)
+  Job                 String?   @db.NVarChar(255)
+  Q1_motivation       String?   @db.NVarChar(255)
+  Q2_ThinkAboutVideo  String?   @db.NVarChar(255)
+  Q3_whyYet           String?   @db.NVarChar(255)
+  Q4_WhichProgram     String?   @db.NVarChar(255)
+  Q5_WhyChoice        String?   @db.NVarChar(255)
+  Q6_earnMonth        String?   @db.NVarChar(255)
+  Q7_DoWithMoney      String?   @db.NVarChar(255)
+  Q8_HowRateCredit    String?   @db.NVarChar(255)
+  Q9_TerryWriteChk    String?   @db.NVarChar(255)
+  Q10_CCdept          String?   @db.NVarChar(255)
+  Q11_InvestToday     String?   @db.NVarChar(255)
+  Q12_WhyAmount       String?   @db.NVarChar(255)
+  Not_Interested      Boolean?  @default(false, map: "DF_tblInterviewCold_Not_Interested")
+  Wrong_Number        Boolean?  @default(false, map: "DF_tblInterviewCold_Wrong_Number")
+  SRA_AFF             String?   @default("N'unassigned'", map: "DF_tblInterviewCold_SRA_AFF") @db.NVarChar(20)
+  TW3_AFF             String?   @default("N'unassigned'", map: "DF_tblInterviewCold_TW3_AFF") @db.NVarChar(20)
+  Foward_Video        Boolean?  @default(false, map: "DF_tblInterviewCold_Foward_Video")
+  Foward_Finance      Boolean?  @default(false, map: "DF_tblInterviewCold_Foward_Finance")
+  Comment             String?   @db.NVarChar(Max)
+  HourAvailable       String?   @db.NVarChar(255)
+  InvestTime          String?   @db.NVarChar(225)
+  SourceID            String?   @db.VarChar(10)
+  DateEdited          DateTime? @db.DateTime
+  Callback_Date       DateTime? @db.DateTime
+  IP_Address          String?   @db.NVarChar(50)
+  Gender              String?   @db.NVarChar(50)
+  Contractor_AFF      String?   @default("N'unassigned'", map: "DF_tblInterviewCold_Contractor_AFF") @db.NVarChar(20)
+  Contractor_Comments String?   @db.NVarChar(Max)
+  LeadID              Int?
+  First               String?   @db.NVarChar(50)
+  Occupation          String?   @db.NVarChar(35)
+  Comments_SRA        String?   @db.NVarChar(Max)
+  TW3_Comments        String?   @db.NVarChar(Max)
+  CreditScore         Int?
+  InvestAmount        Int?
+  Send_TW3Application Boolean?  @default(false, map: "DF_tblInterviewCold_Send_TW3Application")
+  DateStamp           DateTime? @db.DateTime
+  SourceCode          String?   @db.NVarChar(20)
+  PlusOne             String?   @db.NVarChar(255)
+  TimeZone            String?   @db.NVarChar(18)
+  Callback            Int?
+  TimeSlot            String?   @db.NChar(10)
+  Special             Boolean?  @default(false, map: "DF_tblInterviewCold_Special")
+  RowRank             Int?
+
+  @@index([Interview_CSID], map: "Interview_CSIDS")
+}
